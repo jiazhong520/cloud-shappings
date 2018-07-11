@@ -1,13 +1,21 @@
 package com.example.cloudshappings.entites;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-@Entity(name = "goodsType")
+@Entity
 @Table(name = "goods_type")
-public class GoodsType {
+public class GoodsType implements Serializable {
+    /**
+     * 商品类型主键
+     */
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @Column(name = "type_id")
     private Integer typeId;
+    /**
+     * 商品类型名称
+     */
     @Column(name = "goods_type_name")
     private String  goodsTypeName;
 
