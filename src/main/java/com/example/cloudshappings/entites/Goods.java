@@ -4,13 +4,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "goods")
 public class Goods implements Serializable {
 
     /**
      * 商品主键
      */
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer goodsId;
 
@@ -58,27 +57,16 @@ public class Goods implements Serializable {
     /**
      * 商品的类型
      */
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "type_id")
+
+
+    @JoinColumn(name = "type_id",foreignKey = @ForeignKey(name = "type_id"),referencedColumnName = "type_id")
+    @OneToOne(targetEntity = GoodsType.class,fetch = FetchType.EAGER)
     private GoodsType goodsType;
+
+
     public Goods() {
     }
 
-    @Override
-    public String toString() {
-        return "Goods{" +
-                "goodsId=" + goodsId +
-                ", goodsName='" + goodsName + '\'' +
-                ", goodsPrice=" + goodsPrice +
-                ", goodsInformation='" + goodsInformation + '\'' +
-                ", goodsImagesLocation='" + goodsImagesLocation + '\'' +
-                ", goodsCount=" + goodsCount +
-                ", isAvailable=" + isAvailable +
-                ", goodsSale=" + goodsSale +
-                ", goodsType=" + goodsType +
-                '}';
-    }
 
     public Integer getGoodsId() {
         return goodsId;
@@ -165,15 +153,18 @@ public class Goods implements Serializable {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "goodsId=" + goodsId +
+                ", goodsName='" + goodsName + '\'' +
+                ", goodsPrice=" + goodsPrice +
+                ", goodsInformation='" + goodsInformation + '\'' +
+                ", goodsImagesLocation='" + goodsImagesLocation + '\'' +
+                ", goodsCount=" + goodsCount +
+                ", isAvailable=" + isAvailable +
+                ", goodsSale=" + goodsSale +
+                ", goodsType=" + goodsType +
+                '}';
+    }
 }
