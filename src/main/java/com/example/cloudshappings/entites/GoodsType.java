@@ -1,5 +1,7 @@
 package com.example.cloudshappings.entites;
 
+
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -14,14 +16,7 @@ public class GoodsType implements Serializable {
     @Column(name = "type_id")
     private Integer typeId;
 
-    @Override
-    public String toString() {
-        return "GoodsType{" +
-                "typeId=" + typeId +
-                ", goodsTypeName='" + goodsTypeName + '\'' +
-                ", goods=" + goods +
-                '}';
-    }
+
 
     /**
      * 商品类型名称
@@ -42,17 +37,7 @@ public class GoodsType implements Serializable {
         return typeId;
     }
 
-    public List<Goods> getGoods() {
-        return goods;
-    }
 
-    public void setGoods(List<Goods> goods) {
-        this.goods = goods;
-    }
-
-    @OneToMany(targetEntity = Goods.class,fetch = FetchType.EAGER)
-    @JoinColumn(name = "type_id",referencedColumnName = "type_id")
-    private List<Goods> goods;
 
     public void setTypeId(Integer typeId) {
         this.typeId = typeId;

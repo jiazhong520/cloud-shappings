@@ -1,10 +1,12 @@
 package com.example.cloudshappings.entites;
 
+
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Goods implements Serializable {
+public class Goods implements Serializable,Cloneable {
 
     /**
      * 商品主键
